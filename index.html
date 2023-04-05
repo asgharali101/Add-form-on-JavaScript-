@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add-contant-form</title>
+</head>
+
+<body class="p-20">
+    <div class="px-6 lg:px-8">
+        <div class="sm:flex sm:items-center">
+            <div class="sm:flex-auto">
+                <h1 class="text-xl font-semibold text-gray-900">Users</h1>
+                <p class="mt-2 text-sm text-gray-700">A list of all the users in your account including their name,
+                    title,
+                    email and role.</p>
+            </div>
+            <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+                <button type="button"
+                    class="block rounded-md bg-indigo-600 py-1.5 px-3 text-center text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    onclick="hiddenForm.style='display: block'">
+                    Add user
+                </button>
+            </div>
+        </div>
+
+        <div class="mt-8 flow-root">
+            <form action="#" name="hiddenForm" class="hidden mb-10" method="POST">
+                <div class="shadow sm:overflow-hidden sm:rounded-md">
+                    <div class="space-y-6 bg-white py-6 px-4 sm:p-6">
+                        <div>
+                            <h3 class="text-lg font-medium leading-6 text-gray-900">Enter User details</h3>
+                        </div>
+
+                        <div class="grid grid-cols-6 gap-6">
+                            <div class="col-span-6 sm:col-span-3">
+                                <label for="name" class="block text-sm font-medium text-gray-700">
+                                    Name
+                                </label>
+
+                                <input type="text" name="name" id="name" autocomplete="given-name"
+                                    class="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                            </div>
+
+                            <div class="col-span-6 sm:col-span-3">
+                                <label for="english" class="block text-sm font-medium text-gray-700">
+                                    english
+                                </label>
+                                <input type="number" name="english" id="english" autocomplete="given-name"
+                                    class="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                            </div>
+
+                            <div class="col-span-6 sm:col-span-4">
+                                <label for="physics
+                                
+                                " class="block text-sm font-medium text-gray-700">
+                                    physics
+                                </label>
+
+                                <input type="number" name="physics" id="physics" autocomplete="given-name"
+                                    class="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                            </div>
+
+                             <div class="col-span-6 sm:col-span-4">
+                                <label for="chemistry" class="block text-sm font-medium text-gray-700">
+                                    chemistry
+                                </label>
+
+                                <input oninput="console.(hiddenForm.chemistry.value )" type="number" name="chemistry" id="chemistry" autocomplete="given-name"
+                                    class="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                            </div>
+
+
+                             
+                            
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
+                        <button type="button" onclick="saveUser()"
+                            class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Save</button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="-my-2 -mx-6 overflow-x-auto lg:-mx-8">
+                <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                    <table class="w-full divide-y divide-gray-300">
+                        <thead>
+                            <tr>
+                                <th scope="col"
+                                    class="py-3.5 pl-6 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Name
+                                </th>
+                                <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">
+                                    english
+                                </th>
+                                <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">physics
+                                </th>
+                                <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">chemistry
+                                </th>
+                                <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">total marks
+                                </th>
+                                <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">obtained marks
+                                </th>
+                                <th scope="col" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-6 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                                    <span>Edit</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200" id="usersTable">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const totalSubjectsMarks=300
+        
+        const usersTableElement = document.getElementById('usersTable')
+
+        const usersTable = [
+            { 
+                name: 'Asghar', 
+                english:7,
+                physics: 9, 
+                chemistry:7, 
+                totalMarks:totalSubjectsMarks, 
+                obtainedmarks:787,
+            }
+            
+        ]
+     
+        populateusersTable()
+
+        function saveUser() {
+            console.log(hiddenForm.english.value)
+            const user ={
+                name: hiddenForm.name.value,
+                english: Number(hiddenForm.english.value),
+                physics: Number(hiddenForm.physics.value),
+                chemistry: Number(hiddenForm.chemistry.value),
+                totalMarks:totalSubjectsMarks,
+                obtainedmarks: null,
+            }
+
+
+            usersTable.push(user)
+            populateusersTable()
+
+            hiddenForm.style.display = 'none'
+            hiddenForm.reset()
+        }
+    
+
+        function populateusersTable() {
+            usersTableElement.innerHTML = ''
+
+            let englishTotalMarks = 0;
+
+            usersTable.forEach(function (user) {
+                englishTotalMarks += user.english
+
+                usersTableElement.innerHTML += `
+                    <tr>
+                        <td class="whitespace-nowrap py-4 pl-6 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                            ${user.name}
+                        </td>
+                        <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+                            ${user.english}
+                        </td>
+                        <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+                            ${user.physics}
+                        </td>
+                        <td class="whitespace-nowrap py-4 px-3 text-sm 
+                        text-gray-500">
+                            ${user.chemistry}
+                        </td>
+                        <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+                            ${totalSubjectsMarks}
+                        </td>
+                        <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+                           ${user.physics + user.chemistry + user.english}
+                        </td>
+                       
+                    </tr>
+                `
+            })
+
+            usersTableElement.innerHTML +=
+                    `<tr>
+                        <td class="whitespace-nowrap py-4 pl-6 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                            Total
+                        </td>
+                        <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+                            ${englishTotalMarks}
+                        </td>
+                        <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+                            Not specified
+                        </td>
+                        <td class="whitespace-nowrap py-4 px-3 text-sm 
+                        text-gray-500">
+                            NA
+                        </td>
+                        <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+                            Na
+                        </td>
+                        <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+                           Na
+                        </td>
+                       
+                    </tr>
+                `
+        }
+    </script>
+
+    <script type="module" src="/main.js"></script>
+</body>
+
+</html>
